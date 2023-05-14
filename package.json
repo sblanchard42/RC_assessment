@@ -1,0 +1,19 @@
+{
+  "name": "rc_assessment",
+  "version": "1.0.0",
+  "description": "RCG - Full Stack Developer Assessment",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sblanchard42/RC_assessment.git"
+  },
+  "author": "Sara Blanchard",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sblanchard42/RC_assessment/issues"
+  },
+  "homepage": "https://github.com/sblanchard42/RC_assessment#readme"
+}
