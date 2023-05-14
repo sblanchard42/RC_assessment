@@ -34,14 +34,9 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* Node.js
+* React.js
+* Material UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -50,14 +45,42 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- REQUIREMENTS -->
 ## Requirements
 
-- [ ] Add Changelog
-- [ ] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+### Employee Information Form
+- Text fields - Personal identification, First name, Last name, and email address.
+- Date picker - Hired Date.
+- Dropdown - Job title (4 options: TA Rep A, TA Rep B, Direct Rep A, Direct Rep B).
+- Text field: Agency Number field should be hidden during form load, show for job titles starting with “Direct”.
 
+### Registered Employees
+- List all registered employees.
+- Option to Insert, Delete and Edit an employee.
+
+### Validations
+- All fields are required.
+- Personal Id is a 7-digit number.
+- Hire Date can’t be in the future.
+- Check the email address format is valid without using regular expressions. An email will be considered valid if:
+    - Has only one @ character 
+    - Has at least a “.” (dot)
+    - Has no spaces 
+
+### On form submission for new Employee:
+- Call the API route to insert the new Employee. Person_ID is unique, the API request should return an error in case 
+the id already exists. 
+- UI must be refreshed after the request is successful.
+
+### On Delete action from the grid:
+- Call the API route that will remove the selected employee from the database.
+- UI must be refreshed after the request is successful.
+
+### On Edit action from the grid:
+- Call the API route that will bring data from the given Employee and present it in the edit form.
+- The Person Id can’t be edited.
+
+### On submission of the Edit form:
+- Call the API route that will update the selected employee in the database.
+- All validation previously defined should be present.
+- UI must be refreshed after the request is successful.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -67,25 +90,8 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <!-- CONTACT -->
 ## Contact
 
-Your Name - sarablanchard42@gmail.com
+Sara Blanchard - sarablanchard42@gmail.com
 
 Project Link: [https://github.com/sblanchard42/RC_assessment](https://github.com/sblanchard42/RC_assessment)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
