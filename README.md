@@ -33,7 +33,9 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 * Node.js
 * React.js
-* Material UI
+* Semantic UI
+* Sequalize
+* sqlite3
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

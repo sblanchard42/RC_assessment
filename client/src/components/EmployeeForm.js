@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Modal, Button } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
-
+import Data from "../Data";
 
 const jobOptions = [
     { key: "taA", text: "TA Rep A", value: "TA Rep A" },
@@ -24,46 +24,35 @@ function EmployeeForm () {
         [hireDate, setHireDate] = useState(null),
         [message, setMessage] = useState("");
 
-    const checkFields = () => {
-        console.log("check values")
+
+    const validateFields = () => {
+        if (personalID.length !== 7) return false;
+        if (hireDate > new Date()) return false;
+        /*-- Checks that the e-mail address has one @, at least one . and no spaces --*/
+        if ((emailAddress.indexOf("@") !== emailAddress.lastIndexOf("@")) || (emailAddress.indexOf(".") < 0) || (emailAddress.indexOf(" ") >= 0)) return false;
+
+        return true;
     }
     const handleDateChange = (event, data) => setHireDate(data.value);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
-        checkFields();
-
-        try {
-            let res = await fetch("http://localhost/3001/post", {
-                method: "POST",
-                body: JSON.stringify({
-                    personal_id: personalID,
-                    first_name: firstName,
-                    last_name: lastName,
-                    email_address: emailAddress,
-                    hire_date: hireDate,
-                    job_title: jobTitle,
-                    agency_num: agencyNumber,
-                    registration_date: new Date()
-                }),
-            });
-            // let resJSON = await res.json();
-            if (res.status === 200) {
-                setPersonalID();
-                setFirstName("");
-                setLastName("");
-                setEmailAddress("");
-                setJobTitle("");
-                setAgencyNumber();
-                setMessage("User created successfully");
-            } else {
-                setMessage("Some error occured");
-            }
-        } catch (err) {
-            console.log(err);
+        const employee = {
+            personal_id: personalID,
+            first_name: firstName,
+            last_name: lastName,
+            email_address: emailAddress,
+            hire_date: hireDate,
+            job_title: jobTitle,
+            agency_num: agencyNumber,
+            registration_date: new Date()
         }
-    };
+
+        if (validateFields()) {
+            employeeController.createEmployee(employee)
+        }
+    }
 
     return (
         <Modal
