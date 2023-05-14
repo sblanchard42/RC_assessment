@@ -2,7 +2,7 @@
 
 
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT TITLE -->
 <br />
 <div align="center">
   <h3 align="center">Royal Caribbean Job Assessment</h3>

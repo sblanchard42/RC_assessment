@@ -1,19 +1,64 @@
 {
   "name": "rc_assessment",
   "version": "1.0.0",
-  "description": "RCG - Full Stack Developer Assessment",
+  "description": "<a name=\"readme-top\"></a>",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "start_react": "react-scripts start",
+    "build": "react-scripts build",
+    "react_test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sblanchard42/RC_assessment.git"
-  },
-  "author": "Sara Blanchard",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sblanchard42/RC_assessment/issues"
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "axios": "0.19.2",
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
+    "react-native-sqlite-storage": "^6.0.1",
+    "react-scripts": "5.0.1",
+    "react-semantic-ui-datepickers": "^2.17.2",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4",
+    "sequelize": "^6.31.1"
   },
-  "homepage": "https://github.com/sblanchard42/RC_assessment#readme"
+  "devDependencies": {
+    "@types/express": "4.17.6",
+    "@types/react": "16.9.34",
+    "@types/react-dom": "16.9.6",
+    "concurrently": "5.1.0",
+    "nodemon": "2.0.3",
+    "react-scripts": "3.4.1",
+    "sqlite3": "^4.2.0",
+    "typescript": "3.8.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:3001"
 }
