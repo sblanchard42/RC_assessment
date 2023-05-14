@@ -22,9 +22,6 @@ database. The HTTP methods allowed are GET and POST.
 * Present all registered employees in the home page.
 * The UI design is up to you.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
-
-Use the `BLANK_README.md` to get started.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
