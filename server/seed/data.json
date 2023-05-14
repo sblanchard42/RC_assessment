@@ -1,0 +1,24 @@
+{
+    "employees": [
+        {
+            "personal_id": 1234567,
+            "first_name": "john",
+            "last_name": "Smith",
+            "email_address": "john@smith.com",
+            "hire_date": "01/23/2010",
+            "job_title": "TA Rep B",
+            "agency_num": null,
+            "registration_date": "05/14/2023"
+        },
+        {
+            "personal_id": 7654321,
+            "first_name": "Sally",
+            "last_name": "Jones",
+            "email_address": "sally@jones.com",
+            "hire_date": "02/20/2002",
+            "job_title": "Direct Rep A",
+            "agency_num": 3456,
+            "registration_date": "05/14/2023"
+        }
+    ]
+}
