@@ -22,7 +22,7 @@ class Database {
         return this.context
             .retrieveValue(`
         SELECT EXISTS (
-          SELECT 1 
+          SELECT 1
           FROM sqlite_master 
           WHERE type = 'table' AND name = ?
         );
@@ -35,7 +35,7 @@ class Database {
         INSERT INTO Employees
           (personal_id, first_name, last_name, email_address, hire_date, job_title, agency_num, registration_date)
         VALUES
-          (?, ?, ?, ?, ?, ?, ?, date());
+          (?, ?, ?, ?, ?, ?, ?, ?);
       `,
                 employee.personal_id,
                 employee.first_name,

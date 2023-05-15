@@ -5,8 +5,9 @@ import EmployeeList from "./components/EmployeeList";
 import "semantic-ui-css/semantic.min.css";
 import { Header, Divider, Segment } from "semantic-ui-react";
 
-function App() {
-    const [data, setData] = React.useState(null);
+const App = () => {
+    const [data, setData] = React.useState(null),
+        [employeeID, setEmployeeID] = React.useState("");
 
     React.useEffect(() => {
         fetch("/api")
@@ -25,11 +26,11 @@ function App() {
                 compact
                 color="blue"
             >
-                <EmployeeForm />
+                <EmployeeForm setEmployeeID />
                 <Divider horizontal>
                     <Header as="h4">Employees</Header>
                 </Divider>
-                <EmployeeList />
+                <EmployeeList employeeID />
             </Segment>
         </div>
     );

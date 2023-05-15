@@ -7,7 +7,7 @@
             "email_address": "john@smith.com",
             "hire_date": "01/23/2010",
             "job_title": "TA Rep B",
-            "agency_num": null,
+            "agency_num": 0,
             "registration_date": "05/14/2023"
         },
         {

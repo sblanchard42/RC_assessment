@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useParams } from 'react-router-dom';
 import { Form, Modal, Button } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
@@ -14,7 +13,7 @@ const jobOptions = [
 
 const Form_Endpoint = "";
 
-const EmployeeForm = () => {
+const EmployeeForm = ({employeeID}) => {
     const [open, setOpen] = useState(false),
         [personalID, setPersonalID] = useState(0),
         [firstName, setFirstName] = useState(""),
@@ -27,10 +26,10 @@ const EmployeeForm = () => {
         context = useContext(Context.Context);
 
         
-    const { personal_id } = useParams();
+    // const { employeeID } = useParams();
 
-    if (personal_id) {
-         context.data.getEmployee(personal_id);
+    if (employeeID) {
+         context.data.getEmployee(employeeID);
     }
 
     const validateFields = () => {
@@ -68,8 +67,8 @@ const EmployeeForm = () => {
 
         
         if (validateFields()) {
-            if (personal_id) {
-                context.data.handleUpdate(personal_id, employee);
+            if (employeeID) {
+                context.data.handleUpdate(employeeID, employee);
             } else {
                 context.data.createEmployee(employee);
             }
@@ -96,10 +95,10 @@ const EmployeeForm = () => {
                     target="_blank"
                 >
                     <Form.Group widths="equal">
-                        {personal_id ? <Form.Input
+                        {employeeID ? <Form.Input
                             fluid
                             label="Personal ID"
-                            value={personal_id}
+                            value={employeeID}
                             disabled
                         /> : <Form.Input
                             fluid
@@ -111,21 +110,21 @@ const EmployeeForm = () => {
                         <Form.Input
                             fluid
                             label="First Name"
-                            placeholder={!personal_id ? "First Name" : context.data.first_name}
+                            placeholder={!employeeID ? "First Name" : context.data.first_name}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
                         />
                         <Form.Input
                             fluid
                             label="Last Name"
-                            placeholder={!personal_id ? "Last Name" : context.data.last_name}
+                            placeholder={!employeeID ? "Last Name" : context.data.last_name}
                             onChange={(e) => setLastName(e.target.value)}
                             required
                         />
                         <Form.Input
                             fluid
                             label="E-mail Address"
-                            placeholder={!personal_id ? "E-mail Address" : context.data.email_address}
+                            placeholder={!employeeID ? "E-mail Address" : context.data.email_address}
                             onChange={(e) => setEmailAddress(e.target.value)}
                             required
                         />
@@ -135,7 +134,7 @@ const EmployeeForm = () => {
                             fluid
                             label="Job Title"
                             options={jobOptions}
-                            placeholder={!personal_id ? "Job Title" : context.data.job_title}
+                            placeholder={!employeeID? "Job Title" : context.data.job_title}
                             onChange={(e) => setJobTitle(e.target.value)}
                             required
                         />
@@ -143,7 +142,7 @@ const EmployeeForm = () => {
                         {(jobTitle && jobTitle.indexOf("Direct") > 0) ? <Form.Input
                             fluid
                             label="Agency Number"
-                            placeholder={!personal_id ? "Agency Number" : context.data.agency_num}
+                            placeholder={!employeeID? "Agency Number" : context.data.agency_num}
                             onChange={(e) => setAgencyNumber(e.target.value)}
                         /> : null}
                         <Form.Field required>
