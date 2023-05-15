@@ -1,6 +1,5 @@
 'use strict';
 
-const bcryptjs = require('bcryptjs');
 const Context = require('./context');
 
 class Database {
