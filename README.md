@@ -85,6 +85,16 @@ the id already exists.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- Local -->
+## Local
+
+### To access local:
+- Open a terminal in the server folder
+- Run `npm start` to start the server
+
+- Open a new terminal in the client folder
+- Run `npm start` to start the react client
+
 
 <!-- CONTACT -->
 ## Contact

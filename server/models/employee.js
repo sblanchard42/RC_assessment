@@ -72,7 +72,7 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER
         },
         registration_date: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATEONLY,
             allowNull: false
         }
     }, { sequelize });
