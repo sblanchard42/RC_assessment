@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { Form, Modal, Button } from "semantic-ui-react";
 import SemanticDatepicker from 'react-semantic-ui-datepickers';
 import 'react-semantic-ui-datepickers/dist/react-semantic-ui-datepickers.css';
-import Data from "../Data";
+import Context from "../Context";
 
 const jobOptions = [
     { key: "taA", text: "TA Rep A", value: "TA Rep A" },
@@ -13,7 +14,7 @@ const jobOptions = [
 
 const Form_Endpoint = "";
 
-function EmployeeForm () {
+const EmployeeForm = () => {
     const [open, setOpen] = useState(false),
         [personalID, setPersonalID] = useState(0),
         [firstName, setFirstName] = useState(""),
@@ -22,14 +23,30 @@ function EmployeeForm () {
         [jobTitle, setJobTitle] = useState(""),
         [agencyNumber, setAgencyNumber] = useState(0),
         [hireDate, setHireDate] = useState(null),
-        [message, setMessage] = useState("");
+        [message, setMessage] = useState(""),
+        context = useContext(Context.Context);
 
+        
+    const { personal_id } = useParams();
+
+    if (personal_id) {
+         context.data.getEmployee(personal_id);
+    }
 
     const validateFields = () => {
-        if (personalID.length !== 7) return false;
-        if (hireDate > new Date()) return false;
+        if (personalID.length !== 7) {
+            setMessage("Personal Id is the incorrect length");
+            return false;
+        }
+        if (hireDate > new Date()) {
+            setMessage("Hire Date must be before today's date");
+            return false;
+        }
         /*-- Checks that the e-mail address has one @, at least one . and no spaces --*/
-        if ((emailAddress.indexOf("@") !== emailAddress.lastIndexOf("@")) || (emailAddress.indexOf(".") < 0) || (emailAddress.indexOf(" ") >= 0)) return false;
+        if ((emailAddress.indexOf("@") !== emailAddress.lastIndexOf("@")) || (emailAddress.indexOf(".") < 0) || (emailAddress.indexOf(" ") >= 0)) {
+            setMessage("Not a valid e-mail address");
+            return false;
+        }
 
         return true;
     }
@@ -49,8 +66,13 @@ function EmployeeForm () {
             registration_date: new Date()
         }
 
+        
         if (validateFields()) {
-            employeeController.createEmployee(employee)
+            if (personal_id) {
+                context.data.handleUpdate(personal_id, employee);
+            } else {
+                context.data.createEmployee(employee);
+            }
         }
     }
 
@@ -74,31 +96,36 @@ function EmployeeForm () {
                     target="_blank"
                 >
                     <Form.Group widths="equal">
-                        <Form.Input
+                        {personal_id ? <Form.Input
+                            fluid
+                            label="Personal ID"
+                            value={personal_id}
+                            disabled
+                        /> : <Form.Input
                             fluid
                             label="Personal ID"
                             placeholder="Personal ID"
                             onChange={(e) => setPersonalID(e.target.value)}
                             required
-                        />
+                        />}
                         <Form.Input
                             fluid
                             label="First Name"
-                            placeholder="First Name"
+                            placeholder={!personal_id ? "First Name" : context.data.first_name}
                             onChange={(e) => setFirstName(e.target.value)}
                             required
                         />
                         <Form.Input
                             fluid
                             label="Last Name"
-                            placeholder="Last Name"
+                            placeholder={!personal_id ? "Last Name" : context.data.last_name}
                             onChange={(e) => setLastName(e.target.value)}
                             required
                         />
                         <Form.Input
                             fluid
                             label="E-mail Address"
-                            placeholder="E-mail Address"
+                            placeholder={!personal_id ? "E-mail Address" : context.data.email_address}
                             onChange={(e) => setEmailAddress(e.target.value)}
                             required
                         />
@@ -108,7 +135,7 @@ function EmployeeForm () {
                             fluid
                             label="Job Title"
                             options={jobOptions}
-                            placeholder="Job Title"
+                            placeholder={!personal_id ? "Job Title" : context.data.job_title}
                             onChange={(e) => setJobTitle(e.target.value)}
                             required
                         />
@@ -116,7 +143,7 @@ function EmployeeForm () {
                         {(jobTitle && jobTitle.indexOf("Direct") > 0) ? <Form.Input
                             fluid
                             label="Agency Number"
-                            placeholder="Agency Number"
+                            placeholder={!personal_id ? "Agency Number" : context.data.agency_num}
                             onChange={(e) => setAgencyNumber(e.target.value)}
                         /> : null}
                         <Form.Field required>

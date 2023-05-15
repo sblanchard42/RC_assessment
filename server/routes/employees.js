@@ -16,11 +16,7 @@ router.get('/employees', asyncHandler(async (req, res) => {
 
 // Return a specific employee
 router.get('/employees/:personal_id', asyncHandler(async (req, res) => {
-    const employee = await Employee.findByPk(req.params.personal_id, {
-        attributes: {
-            exclude: ['createdAt', 'updatedAt']
-        }
-    });
+    const employee = await Employee.findByPk(req.params.personal_id);
     if (employee) {
         res.json(employee);
     } else {
