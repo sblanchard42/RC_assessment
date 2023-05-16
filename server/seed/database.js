@@ -1,12 +1,12 @@
-'use strict';
+"use strict";
 
-const Context = require('./context');
+const Context = require("./context");
 
 class Database {
     constructor(seedData, enableLogging) {
         this.employees = seedData.employees;
         this.enableLogging = enableLogging;
-        this.context = new Context('fsjstd-restapi.db', enableLogging);
+        this.context = new Context("rca-restapi.db", enableLogging);
     }
 
     log(message) {
@@ -22,8 +22,8 @@ class Database {
             .retrieveValue(`
         SELECT EXISTS (
           SELECT 1
-          FROM sqlite_master 
-          WHERE type = 'table' AND name = ?
+          FROM sqlite_schema 
+          WHERE type = "table" AND name = ?
         );
       `, tableName);
     }
@@ -53,36 +53,36 @@ class Database {
     }
 
     async init() {
-        const employeeTableExists = await this.tableExists('Employees');
+        const employeeTableExists = await this.tableExists("Employees");
 
         if (employeeTableExists) {
-            this.log('Dropping the Employees table...');
+            this.log("Dropping the Employees table...");
 
             await this.context.execute(`
         DROP TABLE IF EXISTS Employees;
       `);
         }
 
-        this.log('Creating the Employees table...');
+        this.log("Creating the Employees table...");
 
         await this.context.execute(`
       CREATE TABLE Employees (
         personal_id INTEGER PRIMARY KEY NOT NULL,
-        first_name VARCHAR(50) NOT NULL DEFAULT '',
-        last_name VARCHAR(50) NOT NULL DEFAULT '',
-        email_address VARCHAR(100) NOT NULL DEFAULT '',
-        hire_date DATE NOT NULL DEFAULT '',
-        job_title VARCHAR(100) NOT NULL DEFAULT '',
+        first_name VARCHAR(50) NOT NULL DEFAULT "",
+        last_name VARCHAR(50) NOT NULL DEFAULT "",
+        email_address VARCHAR(100) NOT NULL DEFAULT "",
+        hire_date DATE NOT NULL DEFAULT "",
+        job_title VARCHAR(100) NOT NULL DEFAULT "",
         agency_num INTEGER,
         registration_date DATE NOT NULL
       );
     `);
 
-        this.log('Creating the employee records...');
+        this.log("Creating the employee records...");
 
         await this.createEmployees(this.employees);
 
-        this.log('Database successfully initialized!');
+        this.log("Database successfully initialized!");
     }
 }
 

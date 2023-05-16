@@ -16,6 +16,7 @@
         "react-semantic-ui-datepickers": "^2.17.2",
         "semantic-ui-css": "^2.5.0",
         "semantic-ui-react": "^2.1.4",
+        "sequelize": "^6.31.1",
         "web-vitals": "^1.0.1"
     },
     "scripts": {
@@ -41,5 +42,6 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
-    }
+    },
+    "proxy": "localhost:3001/"
 }

@@ -26,7 +26,7 @@ app.use(express.json());
 // setup a friendly greeting for the root route
 app.get('/', (req, res) => {
   res.json({
-    message: 'Welcome to the REST API project!',
+    message: 'Welcome to the REST API for the Royal Caribbean Group assessment!',
   });
 });
 
