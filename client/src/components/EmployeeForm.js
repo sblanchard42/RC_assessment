@@ -13,9 +13,8 @@ const jobOptions = [
 
 const Form_Endpoint = "";
 
-const EmployeeForm = ({employeeID}) => {
-    const [open, setOpen] = useState(false),
-        [personalID, setPersonalID] = useState(0),
+const EmployeeForm = ({employeeID, setEmployeeID, openClose, setOpenClose}) => {
+    const [personalID, setPersonalID] = useState(0),
         [firstName, setFirstName] = useState(""),
         [lastName, setLastName] = useState(""),
         [emailAddress, setEmailAddress] = useState(""),
@@ -78,10 +77,9 @@ const EmployeeForm = ({employeeID}) => {
     return (
         <Modal
             closeIcon
-            onClose={() => setOpen(false)}
-            onOpen={() => setOpen(true)}
-            open={open}
-            trigger={<Button color="blue">Add New Employee</Button>}
+            onClose={() => setOpenClose(false)}
+            onOpen={() => setOpenClose(true)}
+            open={openClose}
         >
             <Modal.Header>
                 Employee Information Form
@@ -138,12 +136,11 @@ const EmployeeForm = ({employeeID}) => {
                             onChange={(e) => setJobTitle(e.target.value)}
                             required
                         />
-                        {console.log(jobTitle)}
                         {(jobTitle && jobTitle.indexOf("Direct") > 0) ? <Form.Input
                             fluid
                             label="Agency Number"
                             placeholder={!employeeID? "Agency Number" : context.data.agency_num}
-                            onChange={(e) => setAgencyNumber(e.target.value)}
+                            onChange={(e) => setAgencyNumber(e.target.value || "N/A")}
                         /> : null}
                         <Form.Field required>
                             <label>Hire Date</label>
