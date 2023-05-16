@@ -17,8 +17,8 @@ const App = () => {
         [isLoading, setIsLoading] = useState(true),
         [employeeID, setEmployeeID] = useState(),
         [openClose, setOpenClose] = useState(false);
-console.log("context.data: ", context.data);
-    useEffect(() => {
+
+        useEffect(() => {
         context.data.getEmployees()
             .then((response) => {
                 setData(response);

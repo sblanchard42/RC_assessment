@@ -10,7 +10,7 @@ export default class Data {
      */
     api(path, method = "GET", body = null) {
         const url = config.apiBaseUrl + path;
-
+// console.log(config.apiBaseUrl);
         const options = {
             method,
             headers: {
@@ -32,7 +32,7 @@ export default class Data {
      */
     async getEmployees() {
         const response = await this.api("/employees", "GET", null);
-
+// console.log("response: ", response);
         if (response.status === 200) {
             return response.json().then(data => data);
         } else if (response.status === 401) {

@@ -1,12 +1,12 @@
 const express = require('express');
 
 const router = express.Router();
-const Employees = require('../models').Employee;
+const Employees = require('../models').Employees;
 const { asyncHandler } = require('../middleware/async-handler');
 
 // Return all employees
 router.get('/employees', asyncHandler(async (req, res) => {
-    let employees = await Employee.findAll({
+    let employees = await Employees.findAll({
         attributes: {
             exclude: ['createdAt', 'updatedAt']
         },

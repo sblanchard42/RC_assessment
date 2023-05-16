@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Context from "../Context";
 import { Table, Button } from "semantic-ui-react";
 
-const Employee = ({employee, employeeID, setEmployeeID, openClose, setOpenClose}) => {
+const EmployeeRow = ({employee, employeeID, setEmployeeID, openClose, setOpenClose}) => {
     const context = useContext(Context.Context);
 
     const handleUpdate = (event, personal_id) => {
@@ -36,4 +36,4 @@ const Employee = ({employee, employeeID, setEmployeeID, openClose, setOpenClose}
 
 }
 
-export default Employee;
+export default EmployeeRow;

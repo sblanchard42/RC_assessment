@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Container, Table } from "semantic-ui-react";
 
 import Context from "../Context";
-import Employee from "./Employees";
+import EmployeeRow from "./EmployeeRow";
 
 const EmployeeList = ({employeeID, setEmployeeID, openClose, setOpenClose}) => {
     const context = useContext(Context.Context),
@@ -38,7 +38,7 @@ const EmployeeList = ({employeeID, setEmployeeID, openClose, setOpenClose}) => {
                 </Table.Header>
                 <Table.Body>{
                     (data.length > 0) ? data.map((employee) => {
-                        return (<Employee
+                        return (<EmployeeRow
                             employee={employee}
                             employeeID={employeeID}
                             setEmployeeID={setEmployeeID}
