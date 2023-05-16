@@ -1,94 +1,71 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import Context from '../../Context';
-import { Container, Table } from "semantic-ui-react";
+import Context from "../Context";
+import { Container, Table, Button } from "semantic-ui-react";
 
-function EmployeeList () {
-    let employeeDetail = useState('');
+const EmployeeList = (setEmployeeID) => {
     const context = useContext(Context.Context),
-        [employee, setEmployeeDetail] = useState({}),
-        [data, setData] = useState(""),
-        authUser = context.authenticatedUser;
-  
-    const { personal_id } = useParams();
-  
-    // useEffect(() => {
-    //   // Fetch a employee from the database
-    //   const controller = new AbortController();
-    //   context.data.getEmployee(personal_id)
-    //     .then(response => {
-    //       if (response.personal_id) {
-    //         setEmployeeDetail(response)
-    //       } else {
-    //         // If there is no employee ID, direct to Not Found
-    //         navigate('/notfound');
-    //       }
-    //     })
-    //     .catch((error) => {
-    //       console.error('Error fetching and parsing employee', error);
-    //       navigate('/error');
-    //     });
-    //   // Clean up to prevent memory leak
-    //   return () => controller?.abort();
-    // }, [personal_id, navigate, context.data]);
+        [data, setData] = useState("");
+
+    let [employees] = useState('');
+    // let navigate = useNavigate();
 
     useEffect(() => {
-        context.data.getEmployees()
-          .then((response) => {
-            setData(response);
-          })
-          .catch((error) => {
-            console.error('Error fetching and parsing data', error);
-            navigate('/error');
-          });
-      }, [navigate, context.data]);
+        // Fetch a employee from the database
+        const controller = new AbortController();
 
-  
-    const handleDelete = (event) => {
-      event.preventDefault();
-      context.data.deleteEmployee(personal_id, authUser.emailAddress, authUser.password)
-        .then((response) => {
-          // If employee deletion is successful, then there should be no response returned
-          if (response.length) {
-            navigate('/error');
-          } else {
-            navigate('/');
-          }
-        })
-        .catch((error) => {
-          console.error(error);
-          navigate('/error');
-        });
+        context.data.getEmployees();
+        setData(context.data);
+        // Clean up to prevent memory leak
+        return () => controller?.abort();
+    }, [context.data]);
+
+    const handleUpdate = (event, personal_id) => {
+        event.preventDefault();
+        // context.data.updateEmployee(personal_id);
+        // <EmployeeForm employee_id={personal_id} />
+        setEmployeeID(personal_id);
+        // navigate(`/${personal_id}`);
+    }
+
+    const handleDelete = (event, personal_id) => {
+        event.preventDefault();
+        context.data.deleteEmployee(personal_id);
+            // .then((response) => {
+            //     // If employee deletion is successful, then there should be no response returned
+            //     if (response.length) {
+            //         navigate('/error');
+            //     } else {
+            //         navigate('/');
+            //     }
+            // })
+            // .catch((error) => {
+            //     console.error(error);
+            //     navigate('/error');
+            // });
     }
 
     if (data.length) {
         employees = data.map((employee) => {
-          return <Table.Row>
-            <Table.HeaderCell>{employee.personal_id}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.first_name}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.last_name}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.email_address}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.hire_date}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.job_title}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.agency_num}</Table.HeaderCell>
-            <Table.HeaderCell>{employee.registration_date}</Table.HeaderCell>
-            <Table.HeaderCell>
-                {/* <Button color="blue">Update</Button> */}
-                <Button
-                    color="red"
-                    onClick={(e) => handleDelete(e)}
-                >Delete</Button>
-            </Table.HeaderCell>
-        </Table.Row>
-          
-          
-          
-        //   <Link to={`/employees/${employee.id}`} className="employee--module employee--link" key={employee.id}>
-        //     <h2 className="employee--label">employee</h2>
-        //     <h3 className="employee--title">{employee.title}</h3>
-        //   </Link>
+            return <Table.Row>
+                <Table.Cell>{employee.personal_id}</Table.Cell>
+                <Table.Cell>{employee.first_name}</Table.Cell>
+                <Table.Cell>{employee.last_name}</Table.Cell>
+                <Table.Cell>{employee.email_address}</Table.Cell>
+                <Table.Cell>{employee.hire_date}</Table.Cell>
+                <Table.Cell>{employee.job_title}</Table.Cell>
+                <Table.Cell>{employee.agency_num}</Table.Cell>
+                <Table.Cell>{employee.registration_date}</Table.Cell>
+                <Table.Cell>
+                    <Button
+                        color="blue"
+                        onClick={(e) => handleUpdate(e, employee.personal_id)}>Update</Button>
+                    <Button
+                        color="red"
+                        onClick={(e) => handleDelete(e, employee.personal_id)}>Delete</Button>
+                </Table.Cell>
+            </Table.Row>
         });
-      }
+    }
 
     return (
         <Container

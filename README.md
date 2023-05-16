@@ -35,7 +35,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * React.js
 * Semantic UI
 * Sequalize
-* sqlite3
+* mysql2
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -84,6 +84,16 @@ the id already exists.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+<!-- Local -->
+## Local
+
+### To access local:
+- Open a terminal in the server folder
+- Run `npm start` to start the server
+
+- Open a new terminal in the client folder
+- Run `npm start` to start the react client
 
 
 <!-- CONTACT -->
