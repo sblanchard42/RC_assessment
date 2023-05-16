@@ -1,0 +1,235 @@
+{
+    "info": {
+        "_postman_id": "5d141af3-850c-402a-8562-e33d0e57bed9",
+        "name": "FSJS Techdegree: REST API Project",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Get Employees",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "localhost:3001/api/employees",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "employees"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get Employee",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "localhost:3001/api/employees/1234567",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "employees",
+                        "1234567"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Create Employee",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "personal_id": 1234567,
+                            "first_name": "john",
+                            "last_name": "Smith",
+                            "email_address": "john@smith.com",
+                            "hire_date": "01/23/2010",
+                            "job_title": "TA Rep B",
+                            "agency_num": 0,
+                            "registration_date": "05/14/2023"
+                        },
+                        {
+                            "personal_id": 7654321,
+                            "first_name": "Sally",
+                            "last_name": "Jones",
+                            "email_address": "sally@jones.com",
+                            "hire_date": "02/20/2002",
+                            "job_title": "Direct Rep A",
+                            "agency_num": 3456,
+                            "registration_date": "05/14/2023"
+                        }
+                    ]
+                },
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"title\": \"New Employee\",\n    \"description\": \"My employee description\",\n    \"personalId\": 1234567\n}"
+                },
+                "url": {
+                    "raw": "localhost:3001/api/employees",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "employees"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Update Employee",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "personal_id": 1234567,
+                            "first_name": "john",
+                            "last_name": "Smith",
+                            "email_address": "john@smith.com",
+                            "hire_date": "01/23/2010",
+                            "job_title": "TA Rep B",
+                            "agency_num": 0,
+                            "registration_date": "05/14/2023"
+                        },
+                        {
+                            "personal_id": 7654321,
+                            "first_name": "Sally",
+                            "last_name": "Jones",
+                            "email_address": "sally@jones.com",
+                            "hire_date": "02/20/2002",
+                            "job_title": "Direct Rep A",
+                            "agency_num": 3456,
+                            "registration_date": "05/14/2023"
+                        }
+                    ]
+                },
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n\t\"id\": 1,\n    \"title\": \"New Employee Updated Again Hello\",\n    \"description\": \"My employee description. And again.\",\n    \"personalId\": 1234567\n}"
+                },
+                "url": {
+                    "raw": "localhost:3001/api/employees/1234567",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "employees",
+                        "1234567"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete Employee",
+            "request": {
+                "auth": {
+                    "type": "basic",
+                    "basic": [
+                        {
+                            "personal_id": 1234567,
+                            "first_name": "john",
+                            "last_name": "Smith",
+                            "email_address": "john@smith.com",
+                            "hire_date": "01/23/2010",
+                            "job_title": "TA Rep B",
+                            "agency_num": 0,
+                            "registration_date": "05/14/2023"
+                        },
+                        {
+                            "personal_id": 7654321,
+                            "first_name": "Sally",
+                            "last_name": "Jones",
+                            "email_address": "sally@jones.com",
+                            "hire_date": "02/20/2002",
+                            "job_title": "Direct Rep A",
+                            "agency_num": 3456,
+                            "registration_date": "05/14/2023"
+                        }
+                    ]
+                },
+                "method": "DELETE",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "localhost:3001/api/employees/7654321",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3001",
+                    "path": [
+                        "api",
+                        "employees",
+                        "7654321"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ]
+}

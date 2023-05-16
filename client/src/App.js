@@ -6,8 +6,7 @@ import "semantic-ui-css/semantic.min.css";
 import { Header, Divider, Segment } from "semantic-ui-react";
 
 const App = () => {
-    const [data, setData] = React.useState(null),
-        [employeeID, setEmployeeID] = React.useState("");
+    const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
         fetch("/api")

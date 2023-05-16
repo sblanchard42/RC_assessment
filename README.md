@@ -35,10 +35,18 @@ This section should list any major frameworks/libraries used to bootstrap your p
 * React.js
 * Semantic UI
 * Sequalize
-* mysql2
+* SQlite
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+
+## Getting Started
+
+1. Run `npm install` in the main repo, the client and the server folder to install the dependencies needed.
+    - Install on the main repo folder for sequelize and sqlite3
+    - Client for react and semantic ui.
+2. Within the server folder run `npm run seed` to initialize the database with sample data.
+3. Run `npm start` in the server folder to start the server, and also run `npm start` in the client folder to start the react client.
 
 
 <!-- REQUIREMENTS -->

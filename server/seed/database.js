@@ -6,7 +6,7 @@ class Database {
     constructor(seedData, enableLogging) {
         this.employees = seedData.employees;
         this.enableLogging = enableLogging;
-        this.context = new Context('fsjstd-restapi.db', enableLogging);
+        this.context = new Context('rca-restapi.db', enableLogging);
     }
 
     log(message) {

@@ -75,7 +75,10 @@ module.exports = (sequelize) => {
             type: DataTypes.DATEONLY,
             allowNull: false
         }
-    }, { sequelize });
+    }, {
+        sequelize,
+        modelName: "Employees"
+    });
 
     return Employees;
 };
