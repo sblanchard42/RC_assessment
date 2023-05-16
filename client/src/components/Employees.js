@@ -1,51 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext } from 'react';
 import Context from "../Context";
-import Loading from "../Loading";
+import { Table, Button } from "semantic-ui-react";
 
-const Employees = () => {
+const Employee = ({employee, employeeID, setEmployeeID, openClose, setOpenClose}) => {
     const context = useContext(Context.Context);
-    let [employees] = useState("");
-    const [data, setData] = useState("");
-    const [isLoading, setIsLoading] = useState(true);
 
-    let navigate = useNavigate();
-
-    useEffect(() => {
-        context.data.getEmployees()
-            .then((response) => {
-                setData(response);
-            })
-            .catch((error) => {
-                console.error("Error fetching and parsing data", error);
-                navigate("/error");
-            })
-            .finally(() => setIsLoading(false));
-    }, [navigate, context.data]);
-
-    if (data.length) {
-        employees = data.map((employee) => {
-            return <Link to={`/employees/${employee.id}`} className="employee--module employee--link" key={employee.id}>
-                <h2 className="employee--label">Employee</h2>
-                <h3 className="employee--title">{employee.title}</h3>
-            </Link>
-        });
+    const handleUpdate = (event, personal_id) => {
+        event.preventDefault();
+        setEmployeeID(personal_id);
+        setOpenClose(true);
     }
 
-    return (
-        isLoading ?
-            <Loading />
-            : <div className="wrap main--grid">
-                {employees}
-                <Link to="/employees/create" className="employee--module employee--add--module">
-                    <span className="employee--add--title">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                            viewBox="0 0 13 13" className="add"><polygon points="7,6 7,0 6,0 6,6 0,6 0,7 6,7 6,13 7,13 7,7 13,7 13,6 "></polygon></svg>
-                        New Employee
-                    </span>
-                </Link>
-            </div>
-    );
+    const handleDelete = (event, personal_id) => {
+        event.preventDefault();
+        context.data.deleteEmployee(personal_id);
+    }
+
+
+    return (<Table.Row>
+        <Table.Cell>{employee.personal_id}</Table.Cell>
+        <Table.Cell>{employee.first_name}</Table.Cell>
+        <Table.Cell>{employee.last_name}</Table.Cell>
+        <Table.Cell>{employee.email_address}</Table.Cell>
+        <Table.Cell>{employee.hire_date}</Table.Cell>
+        <Table.Cell>{employee.job_title}</Table.Cell>
+        <Table.Cell>{employee.agency_num}</Table.Cell>
+        <Table.Cell>{employee.registration_date}</Table.Cell>
+        <Table.Cell>
+            <Button color="blue" onClick={(e) => handleUpdate(e, employee.personal_id)}>{"Update"}</Button>
+            <Button
+                color="red"
+                onClick={(e) => handleDelete(e, employee.personal_id)}>{"Delete"}</Button>
+        </Table.Cell>
+    </Table.Row>);
+
 }
 
-export default Employees;
+export default Employee;
